@@ -8,7 +8,7 @@ def wiki(a):
   wiki_wiki = Wikipedia('en')
   page_py = wiki_wiki.page(a)
   result = page_py.summary[0:400].split('.')
-  result ='.'.join(result[:-1])
+  result ='.'.join(result[:-1]) + '.'
   return (result)
 
 
