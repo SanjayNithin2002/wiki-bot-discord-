@@ -19,17 +19,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
-
+    if message.author == client.user: return
     if message.content.startswith("wiki"):
-        a = message.content[4:]
-        result = wiki(a)
-        await message.channel.send(result)
+      a = message.content[4:]
+      result = wiki(a)
+      a = a.title()
+      embed=discord.Embed(title=a, description=result, color=0x00CED1)
+      await message.channel.send(embed=embed)
+      
         
 
-    if message.content.startswith("-wiki"):
-        await message.channel.send("Hey!What do you guys wanna know")
+    
 
 keep_alive()
 client.run(os.getenv("TOKEN"))
