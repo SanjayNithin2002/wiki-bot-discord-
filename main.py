@@ -43,7 +43,7 @@ async def on_message(message):
 
 keep_alive()
 
-bot_token = "MTEzMDE2MjAwMDY4MTUwMDc4NQ.GcrmBu.pdhFPQulIDjrEy3MVk_uBPTPOAOLGAI0T5Jqhw"
+bot_token = os.getenv("TOKEN")
 if bot_token:
     client.run(bot_token)
 else:
