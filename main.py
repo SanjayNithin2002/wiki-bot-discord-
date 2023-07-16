@@ -22,6 +22,7 @@ def wiki(a):
 @client.event
 async def on_ready():
   print("We logged in as {0.user}".format(client))
+  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="wiki"))
 
 @client.event
 async def on_message(message):
