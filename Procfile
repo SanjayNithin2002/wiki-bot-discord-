@@ -1,1 +1,1 @@
-web: gunicorn app:keep_alive
+web: gunicorn app: app
