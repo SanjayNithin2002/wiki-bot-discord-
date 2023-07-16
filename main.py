@@ -2,7 +2,7 @@ import discord
 import os
 import wikipediaapi
 import asyncio
-from keep_alive import keep_alive
+from app import keep_alive
 
 intents = discord.Intents.default() 
 intents.message_content = True
@@ -43,7 +43,7 @@ async def on_message(message):
 
 keep_alive()
 
-bot_token = os.getenv('TOKEN')
+bot_token = "MTEzMDE2MjAwMDY4MTUwMDc4NQ.GMzUZe.qTbGeeHFVmgw8vkp0QSLH44W3rZIEJn_o15bgY"
 if bot_token:
     client.run(bot_token)
 else:
