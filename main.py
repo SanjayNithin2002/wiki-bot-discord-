@@ -2,7 +2,6 @@ import discord
 import os
 import wikipediaapi
 import asyncio
-from app import keep_alive
 import concurrent.futures
 
 intents = discord.Intents.default() 
@@ -40,7 +39,6 @@ async def run_in_thread(func, *args, **kwargs):
         loop = asyncio.get_running_loop()
         return await loop.run_in_executor(executor, func, *args, **kwargs)
 
-keep_alive()
 
 bot_token = os.getenv("TOKEN")
 if bot_token:
