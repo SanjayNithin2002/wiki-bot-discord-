@@ -3,6 +3,7 @@ import os
 import wikipediaapi
 import asyncio
 from app import keep_alive
+import concurrent.futures
 
 intents = discord.Intents.default() 
 intents.message_content = True
@@ -19,11 +20,9 @@ def wiki(a):
      result = page_py.summary
   return (result)
 
-
 @client.event
 async def on_ready():
   print("We logged in as {0.user}".format(client))
-
 
 @client.event
 async def on_message(message):
@@ -31,15 +30,15 @@ async def on_message(message):
         return
     if message.content.startswith("wiki"):
         a = message.content[4:]
-        result = await asyncio.to_thread(wiki, a) # Use `await` to properly await the function
+        result = await run_in_thread(wiki, a)  # Use the alternative run_in_thread function
         a = a.title()
         embed = discord.Embed(title=a, description=result, color=0x00CED1)
         await message.channel.send(embed=embed)
 
-      
-        
-
-    
+async def run_in_thread(func, *args, **kwargs):
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        loop = asyncio.get_running_loop()
+        return await loop.run_in_executor(executor, func, *args, **kwargs)
 
 keep_alive()
 
